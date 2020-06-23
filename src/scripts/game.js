@@ -68,6 +68,14 @@ class Game {
       this.gates[i].move(this.frameNum, this.player)
       if (this.gates[i].collisionCircles.length !== 0) {
         if(Util.goneThroughGate(this.player, this.gates[i])){
+          const explosion = {pos:this.gates[i].collisionCircles[3].pos, radius: 150}
+          const diamondsToKeep =[];
+          for(let i = 0; i < this.diamonds.length; i++){
+            if (!Util.isCollided(explosion, this.diamonds[i])){
+              diamondsToKeep.push(this.diamonds[i]);
+            }
+          }
+          this.diamonds = diamondsToKeep;
           this.gates.splice(i,1);
         }
       }
