@@ -53,7 +53,7 @@ class Game {
       this.addGate();
     }
     if (this.frameNum % 600 === 0 && this.diamondSpawnRate > 20){
-      this.diamondSpawnRate --;
+      this.diamondSpawnRate -= 5;
     }
     for(let i = 0; i < this.diamonds.length; i++){
       this.diamonds[i].move(delta, this.player.pos)

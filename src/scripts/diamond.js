@@ -6,11 +6,11 @@ class Diamond{
     this.vel = 0;
     this.collisionPos = {
       top: this.pos[1] - 15,
-      left: this.pos[0] - 5,
-      bottom: this.pos[1],
-      right: this.pos[0] + 5
+      left: this.pos[0] - 7,
+      bottom: this.pos[1] + 15,
+      right: this.pos[0] + 7
     }
-    this.radius = 5;
+    this.radius = 8;
   }
 
   draw(ctx){
@@ -18,11 +18,11 @@ class Diamond{
     let y = this.pos[1] - 10;
 
     ctx.beginPath();
-    ctx.moveTo(x, y+10);
-    ctx.lineTo(x - 5, y);
-    ctx.lineTo(x, y - 10);
-    ctx.lineTo(x + 5, y);
-    ctx.lineTo(x, y+10);
+    ctx.moveTo(x, y+15);
+    ctx.lineTo(x - 8, y);
+    ctx.lineTo(x, y - 15);
+    ctx.lineTo(x + 8, y);
+    ctx.lineTo(x, y+15);
     ctx.lineWidth = 2;
     ctx.strokeStyle = '#4dffff';
     ctx.stroke();

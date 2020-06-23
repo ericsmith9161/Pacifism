@@ -41,7 +41,6 @@ Additionally, the page will include:
 * `HTML Canvas` for game rendering
 * `HTML5` and `CSS` for page placement and styling
 * `Webpack` to bundle js files
-* `keymaster` for binding keys and player movement
 
 #### In addition to the entry file, the application will have the following scripts ####
 
