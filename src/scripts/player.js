@@ -5,6 +5,13 @@ class Player{
     this.moveAngle = 0;
     this.angle = 0;
     this.draw = this.draw.bind(this);
+    this.collisionPos = {
+      top: this.pos[1] - 5,
+      left: this.pos[0] - 5,
+      bottom: this.pos[1] + 5,
+      right: this.pos[0] + 5
+    }
+    this.radius = 8;
   }
 
   draw(ctx){
@@ -30,12 +37,17 @@ class Player{
   }
 
   move(){
-    console.log(this)
     this.angle += this.moveAngle * Math.PI / 180;
     this.pos = [
       this.pos[0] + this.speed * Math.sin(this.angle),
       this.pos[1] - this.speed * Math.cos(this.angle)
     ]
+    this.collisionPos = {
+      top: this.pos[1] - 5,
+      left: this.pos[0] - 5,
+      bottom: this.pos[1] + 5,
+      right: this.pos[0] + 5
+    }
     this.speed = 0;
     this.moveAngle = 0
   }

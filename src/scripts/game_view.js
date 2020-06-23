@@ -10,10 +10,11 @@ class GameView{
   }
 
   animate(currentTime) {
-    console.log(this);
     this.drawBackground(this.ctx);
     const delta = currentTime - this.lastTime;
-    requestAnimationFrame(this.animate);
+    if (this.game.inPlay){
+      requestAnimationFrame(this.animate);
+    }
     this.game.draw(this.ctx);
     this.handleMovement();
     this.game.moveObjects(delta);
@@ -28,7 +29,6 @@ class GameView{
   start() {
     window.addEventListener('keydown', (e) => {
       e.preventDefault();
-      debugger
       this.keys = (this.keys || []);
       this.keys[e.keyCode] = (e.type == "keydown");
     })
@@ -42,8 +42,8 @@ class GameView{
   handleMovement(){
     if (this.keys && this.keys[65]) {  this.game.player.moveAngle = -3; }
     if (this.keys && this.keys[68]) {  this.game.player.moveAngle = 3; }
-    if (this.keys && this.keys[87]) { this.game.player.speed = -5; }
-    if (this.keys && this.keys[83]) { this.game.player.speed = 5; }
+    if (this.keys && this.keys[87]) { this.game.player.speed = -4; }
+    if (this.keys && this.keys[83]) { this.game.player.speed = 4; }
 
   }
 }
