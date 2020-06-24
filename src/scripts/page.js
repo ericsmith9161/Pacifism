@@ -4,7 +4,6 @@ export const setUpModals = () => {
   const scoreClose = document.getElementsByClassName("close-score")[0];
 
   scoreBtn.onclick = () => {
-    console.log("made it here")
     score.style.display = "block";
   }
 

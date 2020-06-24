@@ -7,8 +7,10 @@ class GameView{
     this.ctx = ctx;
     this.game = new Game()
     this.lastTime = 0;
-    this.animate = this.animate.bind(this)
-    this.start = this.start.bind(this)
+    this.animate = this.animate.bind(this);
+    this.start = this.start.bind(this);
+    this.bgi = new Image();
+    this.bgi.src = "../../assets/images/bg.jpg";
 
     this.bgm = new Sound("../../assets/sounds/bgm.mp3");
     this.gom = new Sound("../../assets/sounds/gameover.mp3");
@@ -17,6 +19,8 @@ class GameView{
 
   animate(currentTime) {
     this.drawBackground(this.ctx);
+    this.ctx.drawImage(this.bgi,0, 0);
+
     const delta = currentTime - this.lastTime;
     if (this.game.inPlay){
       this.bgm.play();
@@ -46,16 +50,16 @@ class GameView{
   drawGameOver(topTen){
     ctx.font = "small-caps bold 40px Courier New";
     ctx.fillStyle = "#00FF00";
-    ctx.fillText("Final Score: " + this.game.score.score, 300, 40);
+    ctx.fillText("Final Score: " + this.game.score.score, 350, 40);
     ctx.font = "small-caps 30px Courier New";
     ctx.fillStyle = "#FFFF00";
-    ctx.fillText("High Scores", 300, 100);
+    ctx.fillText("High Scores", 410, 100);
 
     ctx.font = "small-caps bold 25px Courier New";
     ctx.fillStyle = "#0095DD";
     for(let i = 0; i < 10; i++){
       if (topTen[i]){
-        ctx.fillText((i+1) + "." + topTen[i][0] + ": " + topTen[i][1], 300, 100 + 30*(i+1))
+        ctx.fillText((i+1) + "." + topTen[i][0] + ": " + topTen[i][1], 350, 120 + 30*(i+1))
       }
     }
   }
