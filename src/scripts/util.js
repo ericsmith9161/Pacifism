@@ -31,8 +31,6 @@ const Util = {
 
   goneThroughGate(player, gate){
     for (let i = 0; i < gate.collisionCircles.length; i++){
-      console.log(gate.collisionCircles);
-      console.log(player.pos)
       if (Util.isCollided(player, gate.collisionCircles[i])){
         return true
       }

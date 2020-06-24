@@ -25,10 +25,31 @@
     </div>
     <div class="head-game-info">
       <div class="how-to-play"> 
-        <img src="../assets/images/about.png" width="84">
+        <img id= "about-btn" src="../assets/images/about.png" width="84">
+        <div id = "aboutModal" class="modal">
+            <div class="modal-content">
+              <span class="close-abt">&times;</span>
+              <div>
+                <p><b>How To Play</b></p>
+                <p>WASD or arrow keys to move</p>
+                <p>Avoid the blue diamonds</p>
+                <p>Go through orange gates to decimate nearby diamonds and gain points</p>
+                <p>Collect green shards to increase your score multiplier</p>
+                <p>Good Luck!</p>
+              </div>
+              <p>Background Music: The Ephemeral Bluebell by Bibio</p>
+              <p>Game Inspiration: Geometry Wars 2: Retro Evolved</p>
+            </div>
+        </div>
       </div>
       <div class="scoreboard">
-        <img src="../assets/images/leaderboard.png" width="73">
+        <img id="score-btn" src="../assets/images/leaderboard.png" width="73">
+        <div id="scoreModal" class="modal">
+          <div class="modal-content">
+            <span class="close-score">&times;</span>
+            <p>Some text in the Modal..</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

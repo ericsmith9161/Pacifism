@@ -1,10 +1,12 @@
 class Shard{
-  constructor(pos, vel) {
+  constructor(pos) {
     this.pos = pos;
-    this.vel = vel;
+    this.radius = 25;
   }
 
   draw(ctx){
+    let x = this.pos[0];
+    let y = this.pos[1];
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.bezierCurveTo(x + 2, y - 3, x + 4, y - 3, x + 5, y - 2);
