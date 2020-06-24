@@ -37,7 +37,7 @@ img{
 
 #mycanvas{
   border: 4px solid white;
-  background-image: url("../../assets/images/grid.jpg");
+  background-image: url("../../assets/images/bg.jpg");
 }
 
 .head-game-info{
@@ -130,4 +130,43 @@ p{
 
 b{
   text-decoration: underline;
+}
+
+.play-again-btn{
+  display: block;
+  position: relative;
+  left: 0px;
+  top: -200px;
+  z-index: 101;
+  line-height: 50px;
+  font-size: 40px;
+  color: rgb(163, 83, 238);
+  box-sizing: border-box;
+  font-variant: small-caps;
+  border: 3px solid white;
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.play-again-btn:hover{
+  cursor: pointer;
+}
+
+// .start-btn{
+//   display: block;
+//   position: relative;
+//   top: -640px;
+//   z-index: 101;
+//   height: 640px;
+//   width: 940px;
+//   box-sizing: border-box;
+//   opacity: 0;
+// }
+
+// .start-btn:hover{
+//   cursor: pointer;
+// }
+
+.hidden{
+  display: none;
 }

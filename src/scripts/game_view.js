@@ -9,6 +9,7 @@ class GameView{
     this.lastTime = 0;
     this.animate = this.animate.bind(this);
     this.start = this.start.bind(this);
+    this.started = false;
     this.bgi = new Image();
     this.bgi.src = "../../assets/images/bg.jpg";
 
@@ -30,6 +31,12 @@ class GameView{
       this.game.moveObjects(delta);
       this.lastTime = currentTime;
     }else{
+      const playAgainBtn = document.getElementsByClassName("play-again-btn")[0];
+      playAgainBtn.classList.toggle("hidden");
+      playAgainBtn.onclick = () => {
+        this.restart();
+        playAgainBtn.classList.toggle("hidden");
+      }
       this.bgm.stop();
       this.gom.play();
       let scoresArray = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')) : [];
@@ -40,11 +47,23 @@ class GameView{
       const scores = JSON.parse(localStorage.getItem("scores"));
       console.log(scores);
       const topTen = scores.sort((a,b) => b[1] - a[1]).slice(0,10);
-
-
       this.drawGameOver(topTen);
+
     }
 
+  }
+
+  drawGameBegin(){
+    this.ctx.drawImage(this.bgi, 0, 0);
+    this.ctx.font = "small-caps bold 40px Courier New";
+    this.ctx.fillStyle = "#00FF00";
+    this.ctx.fillText("Click to Play", 350, 300);
+    const cvs = document.getElementById("mycanvas")
+    cvs.onclick = () => {
+      if (!this.started){
+        this.start();
+      }
+    }
   }
 
   drawGameOver(topTen){
@@ -70,6 +89,7 @@ class GameView{
   }
 
   start() {
+    this.started = true;
     window.addEventListener('keydown', (e) => {
       e.preventDefault();
       this.keys = (this.keys || []);
@@ -80,6 +100,13 @@ class GameView{
       this.keys[e.keyCode] = (e.type == "keydown");
     })
     requestAnimationFrame(this.animate);
+  }
+
+  restart(){
+    console.log("what's happenin")
+    this.game = new Game();
+    requestAnimationFrame(this.animate);
+
   }
 
   handleMovement(){

@@ -72,6 +72,7 @@ class Game {
       this.gates[i].move(this.frameNum, this.player)
       if (this.gates[i].collisionCircles.length !== 0) {
         if(Util.goneThroughGate(this.player, this.gates[i])){
+          this.gate.stop();
           const explosion = {pos:this.gates[i].collisionCircles[3].pos, radius: 150}
           const diamondsToKeep =[];
           this.score.score += this.score.multiplier*100;
