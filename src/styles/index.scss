@@ -1,5 +1,5 @@
 .the-page{
-  background-color: black;
+  background-image: url("../../assets/images/bg.jpg");
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -169,4 +169,8 @@ b{
 
 .hidden{
   display: none;
+}
+
+.sound-icon:hover{
+  cursor: pointer;
 }

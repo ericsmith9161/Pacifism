@@ -3,6 +3,7 @@ import Player from "./player";
 import Diamond from "./diamond";
 import Gate from "./gate";
 import Shard from "./shard";
+import Explosion from "./explosion";
 import Util from "./util";
 import Score from "./score";
 import Sound from "./sound";
@@ -20,19 +21,27 @@ class Game {
 
     this.shards = [];
 
+    this.explosions = [];
+    this.explosionFrames = 0;
+
     this.frameNum = 1;
     this.inPlay = true;
 
     this.score = new Score();
 
     this.gate = new Sound("../../assets/sounds/gate.mp3");
+    this.gate.sound.volume = .3;
     this.multi = new Sound("../../assets/sounds/multi.mp3");
+    this.multi.sound.volume = .3;
+    this.diamond = new Sound("../../assets/sounds/diamondspawn.mp3");
+    this.diamond.sound.volume = .05;
 
   }
 
   addDiamond(){
     const diamond = new Diamond([Math.random()*960, Math.random()*640]);
     if(Util.dist(diamond.pos, this.player.pos) > 150){
+      this.diamond.play();
       this.diamonds.push(diamond);
     }
   }
@@ -58,6 +67,7 @@ class Game {
     }
     if (this.frameNum % 600 === 0 && this.diamondSpawnRate > 10){
       this.diamondSpawnRate -= 10;
+      this.gateSpawnRate -= 10;
     }
     for(let i = 0; i < this.diamonds.length; i++){
       this.diamonds[i].move(delta, this.player.pos)
@@ -72,12 +82,24 @@ class Game {
       this.gates[i].move(this.frameNum, this.player)
       if (this.gates[i].collisionCircles.length !== 0) {
         if(Util.goneThroughGate(this.player, this.gates[i])){
-          this.gate.stop();
+
           const explosion = {pos:this.gates[i].collisionCircles[3].pos, radius: 150}
-          const diamondsToKeep =[];
+          const expPos = this.gates[i].collisionCircles[3].pos
+          for(let i = 1; i < 16; i++){
+            this.explosions.push(new Explosion(expPos, i*10))
+          }
+          this.explosionFrames = 15;
+
           this.score.score += this.score.multiplier*100;
           this.score.multiplier += 2;
-          this.gate.play();
+          if (this.gate.paused){
+            this.gate.play();
+          }else{
+            this.gate.sound.currentTime = 0;
+            this.gate.play();
+          }
+
+          const diamondsToKeep = [];
           for(let i = 0; i < this.diamonds.length; i++){
             if (!Util.isCollided(explosion, this.diamonds[i])){
               diamondsToKeep.push(this.diamonds[i]);
@@ -105,6 +127,11 @@ class Game {
 
     }
     this.frameNum++;
+    if (this.explosionFrames > 0){
+      this.explosionFrames --;
+    }else{
+      this.explosions = [];
+    }
   }
 
   draw(ctx){
@@ -117,6 +144,9 @@ class Game {
     }
     for (let i = 0; i < this.shards.length; i++) {
       this.shards[i].draw(ctx);
+    }
+    for (let i = 0; i < this.explosions.length; i++) {
+      this.explosions[i].draw(ctx);
     }
     this.score.drawMult(ctx);
     this.score.drawScore(ctx);

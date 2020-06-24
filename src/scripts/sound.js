@@ -5,7 +5,6 @@ function Sound(src) {
   this.sound.setAttribute("controls", "none");
   this.sound.style.display = "none";
   document.body.appendChild(this.sound);
-  this.sound.volume = .15;
   this.play = function () {
     this.sound.play();
   }

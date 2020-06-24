@@ -4,6 +4,7 @@ class Gate{
   constructor(pos, angle) { // (-1,0) (1, 0), (-1,60), (1,60)
     this.pos = pos;
     this.angle = angle;
+    this.vel = [0,0];
     this.collisionCircles = []
 
   }

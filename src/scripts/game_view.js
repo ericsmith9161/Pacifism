@@ -14,7 +14,10 @@ class GameView{
     this.bgi.src = "../../assets/images/bg.jpg";
 
     this.bgm = new Sound("../../assets/sounds/bgm.mp3");
+    this.bgm.sound.volume = .15;
+    this.bgm.sound.classList.add("background-music");
     this.gom = new Sound("../../assets/sounds/gameover.mp3");
+    this.gom.sound.volume = .15;
     setUpModals();
   }
 
@@ -43,11 +46,9 @@ class GameView{
       let newScoreObj;
       newScoreObj = [this.game.score.name, this.game.score.score];
       scoresArray.push(newScoreObj);
-      localStorage.setItem('scores', JSON.stringify(scoresArray));
-      const scores = JSON.parse(localStorage.getItem("scores"));
-      console.log(scores);
-      const topTen = scores.sort((a,b) => b[1] - a[1]).slice(0,10);
+      const topTen = scoresArray.sort((a, b) => b[1] - a[1]).slice(0, 10);
       this.drawGameOver(topTen);
+      localStorage.setItem('scores', JSON.stringify(topTen));
 
     }
 
@@ -58,6 +59,7 @@ class GameView{
     this.ctx.font = "small-caps bold 40px Courier New";
     this.ctx.fillStyle = "#00FF00";
     this.ctx.fillText("Click to Play", 350, 300);
+    this.toggleSoundSetup();
     const cvs = document.getElementById("mycanvas")
     cvs.onclick = () => {
       if (!this.started){
@@ -69,16 +71,18 @@ class GameView{
   drawGameOver(topTen){
     ctx.font = "small-caps bold 40px Courier New";
     ctx.fillStyle = "#00FF00";
-    ctx.fillText("Final Score: " + this.game.score.score, 350, 40);
+    ctx.textAlign = "center";
+
+    ctx.fillText("Final Score: " + this.game.score.score, 480, 40);
     ctx.font = "small-caps 30px Courier New";
     ctx.fillStyle = "#FFFF00";
-    ctx.fillText("High Scores", 410, 100);
+    ctx.fillText("High Scores", 480, 100);
 
     ctx.font = "small-caps bold 25px Courier New";
     ctx.fillStyle = "#0095DD";
     for(let i = 0; i < 10; i++){
       if (topTen[i]){
-        ctx.fillText((i+1) + "." + topTen[i][0] + ": " + topTen[i][1], 350, 120 + 30*(i+1))
+        ctx.fillText((i+1) + "." + topTen[i][0] + ": " + topTen[i][1], 480, 120 + 30*(i+1))
       }
     }
   }
@@ -107,6 +111,24 @@ class GameView{
     this.game = new Game();
     requestAnimationFrame(this.animate);
 
+  }
+
+  toggleSoundSetup(){
+    const soundIcons = document.getElementsByClassName("sound-icon");
+    for (let i = 0; i < soundIcons.length; i++){
+      soundIcons[i].onclick = () => {
+        soundIcons[0].classList.toggle("hidden");
+        soundIcons[1].classList.toggle("hidden");
+        const sounds = document.getElementsByTagName("audio")
+        for(let i = 0; i < sounds.length; i++){
+          if (sounds[i].muted){
+            sounds[i].muted = false;
+          }else{
+            sounds[i].muted = true;
+          }
+        }
+      }
+    }
   }
 
   handleMovement(){
