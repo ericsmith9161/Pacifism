@@ -2,6 +2,7 @@ import Game from "./game";
 import Sound from "./sound";
 import {setUpModals} from "./page";
 import Util from "./util";
+import axios from "axios";
 
 class GameView{
   constructor(ctx){
@@ -19,8 +20,21 @@ class GameView{
     this.bgm = new Sound("../../assets/sounds/bgm.mp3");
     this.bgm.sound.volume = .15;
     this.bgm.sound.classList.add("background-music");
+
     this.gom = new Sound("../../assets/sounds/gameover.mp3");
     this.gom.sound.volume = .15;
+
+    this.gate = new Sound("../../assets/sounds/gate.mp3");
+    this.gate.sound.volume = .3;
+
+    this.multi = new Sound("../../assets/sounds/multi.mp3");
+    this.multi.sound.volume = .3;
+
+    this.diamond = new Sound("../../assets/sounds/diamondspawn.mp3");
+    this.diamond.sound.volume = .05;
+
+    this.name = "Moe Szyslak";
+    
     setUpModals();
   }
 
@@ -67,6 +81,8 @@ class GameView{
     this.ctx.fillText("Click to Play", 350, 300);
     this.toggleSoundSetup();
     const cvs = document.getElementById("mycanvas")
+    const name = document.getElementsByClassName("name-input");
+    this.name = name || this.name;
     cvs.onclick = () => {
       if (!this.started){
         this.start();
@@ -91,6 +107,9 @@ class GameView{
         ctx.fillText((i+1) + "." + topTen[i][0] + ": " + topTen[i][1], 480, 120 + 30*(i+1))
       }
     }
+    Util.addScore({ user: this.name, score: this.game.score.score }).then(() => {
+      setUpModals();
+    })
   }
 
   drawBackground() {
@@ -124,6 +143,21 @@ class GameView{
   restart(){
     this.game = new Game();
     this.gom.stop();
+    const sounds = document.getElementsByTagName("audio");
+    let anyMuted = false;
+    for (let i = 0; i < sounds.length; i++) {
+      if (sounds[i].muted) {
+        anyMuted = true;
+      }
+    }
+    for (let i = 0; i < sounds.length; i++) {
+      if (anyMuted) {
+        sounds[i].muted = true;
+      } else {
+        sounds[i].muted = false;
+      }
+    }
+
     requestAnimationFrame(this.animate);
 
   }
