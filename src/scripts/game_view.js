@@ -12,6 +12,8 @@ class GameView{
     this.started = false;
     this.bgi = new Image();
     this.bgi.src = "../../assets/images/bg.jpg";
+    this.bgiX = 0;
+    this.bgiY = 0;
 
     this.bgm = new Sound("../../assets/sounds/bgm.mp3");
     this.bgm.sound.volume = .15;
@@ -23,7 +25,7 @@ class GameView{
 
   animate(currentTime) {
     this.drawBackground(this.ctx);
-    this.ctx.drawImage(this.bgi,0, 0);
+    // this.ctx.drawImage(this.bgi,0, 0);
 
     const delta = currentTime - this.lastTime;
     if (this.game.inPlay){
@@ -41,6 +43,7 @@ class GameView{
         playAgainBtn.classList.toggle("hidden");
       }
       this.bgm.stop();
+      this.gom.sound.currentTime=0;
       this.gom.play();
       let scoresArray = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')) : [];
       let newScoreObj;
@@ -56,6 +59,8 @@ class GameView{
 
   drawGameBegin(){
     this.ctx.drawImage(this.bgi, 0, 0);
+    this.ctx.drawImage(this.bgi, this.x, this.y - this.canvasHeight);
+
     this.ctx.font = "small-caps bold 40px Courier New";
     this.ctx.fillStyle = "#00FF00";
     this.ctx.fillText("Click to Play", 350, 300);
@@ -88,8 +93,17 @@ class GameView{
   }
 
   drawBackground() {
+    const speed = 0.08;
+    this.bgiX += speed;
     this.ctx.fillStyle = "#000000";
     this.ctx.fillRect(0, 0, 960, 640);
+
+    this.ctx.drawImage(this.bgi, this.bgiX, this.bgiY);
+    this.ctx.drawImage(this.bgi, this.bgiX - 960, this.bgiY);
+
+    if (this.bgiX >= 960){
+      this.bgiX = 0;
+    }
   }
 
   start() {
@@ -107,8 +121,8 @@ class GameView{
   }
 
   restart(){
-    console.log("what's happenin")
     this.game = new Game();
+    this.gom.stop();
     requestAnimationFrame(this.animate);
 
   }

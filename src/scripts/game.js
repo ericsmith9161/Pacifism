@@ -114,11 +114,12 @@ class Game {
       }
 
       for (let i = 0; i < this.shards.length; i++){
-        if ((Math.abs(this.shards[i].pos[0] - this.player.pos[0]) < 40) &&
-          (Math.abs(this.shards[i].pos[1] - this.player.pos[1]) < 40)) {
+        if ((Math.abs(this.shards[i].pos[0] - this.player.pos[0]) < 70) &&
+          (Math.abs(this.shards[i].pos[1] - this.player.pos[1]) < 70)) {
+          this.shards[i].move(this.player.pos)
           if (Util.isCollided(this.shards[i], this.player)){
-            this.multi.stop();
             this.score.multiplier += 1;
+            this.multi.sound.currentTime = 0;
             this.multi.play();
             this.shards.splice(i,1);
           }

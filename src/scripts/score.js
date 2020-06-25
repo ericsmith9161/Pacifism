@@ -7,6 +7,7 @@ class Score{
 
   drawMult(ctx) {
     ctx.font = "small-caps bold 25px Courier New";
+    ctx.textAlign = "left";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Score: " + this.score, 760, 20);
 
@@ -14,6 +15,7 @@ class Score{
 
   drawScore(ctx) {
     ctx.font = "small-caps bold 25px Courier New";
+    ctx.textAlign = "left";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Multiplier: " + this.multiplier, 20, 20);
 
