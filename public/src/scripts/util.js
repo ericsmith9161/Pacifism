@@ -1,5 +1,8 @@
 // Return a randomly oriented vector with the given length.
+import axios from 'axios';
+
 const Util = {
+
   randomVec(length) {
     const deg = 2 * Math.PI * Math.random();
     return Util.scale([Math.sin(deg), Math.cos(deg)], length);
@@ -37,6 +40,16 @@ const Util = {
     }
 
     return false;
+  },
+
+  getScores(){
+    return axios.get(`http://localhost:5000/api/scores/scores`).then(response => {
+      return response.data;
+    });
+  },
+
+  addScore(data){
+    return axios.post(`http://localhost:5000/api/scores/`, data);
   }
 
 };

@@ -1,6 +1,7 @@
 import Game from "./game";
 import Sound from "./sound";
 import {setUpModals} from "./page";
+import Util from "./util";
 
 class GameView{
   constructor(ctx){
