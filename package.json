@@ -9,13 +9,6 @@
     "maintained node versions",
     "not dead"
   ],
-  "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
-    "webpack:watch": "webpack --watch --config webpack.dev.js",
-    "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize",
-    "app:start": "node app.js",
-    "app:server": "nodemon app.js"
-  },
   "proxy": "http://localhost:5000",
   "repository": {
     "type": "git",
@@ -55,5 +48,12 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.20",
     "morgan": "^1.10.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "webpack:watch": "webpack --watch --config webpack.dev.js",
+    "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize",
+    "app:start": "node app.js",
+    "app:server": "nodemon app.js"
   }
 }
