@@ -40,7 +40,7 @@ class Game {
 
   addDiamond(){
     const diamond = new Diamond([Math.random()*960, Math.random()*640]);
-    if(Util.dist(diamond.pos, this.player.pos) > 150){
+    if (Util.dist(diamond.pos, this.player.pos) > 200){
       this.diamond.play();
       this.diamonds.push(diamond);
     }
