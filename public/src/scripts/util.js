@@ -43,13 +43,13 @@ const Util = {
   },
 
   getScores(){
-    return axios.get(`http://localhost:5000/api/scores/scores`).then(response => {
+    return axios.get(`/api/scores/scores`).then(response => {
       return response.data;
     });
   },
 
   addScore(data){
-    return axios.post(`http://localhost:5000/api/scores/`, data);
+    return axios.post(`/api/scores/`, data);
   }
 
 };

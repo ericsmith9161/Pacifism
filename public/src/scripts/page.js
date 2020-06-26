@@ -26,7 +26,7 @@ export const setUpModals = () => {
   }
 
   const getScores = () => {
-    return axios.get(`http://localhost:5000/api/scores/scores`)
+    return axios.get(`/api/scores/scores`)
   }
 
   getScores().then((data) => {

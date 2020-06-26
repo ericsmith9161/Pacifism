@@ -49,6 +49,10 @@
     "morgan": "^1.10.0"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "webpack:start": "webpack-dev-server --config webpack.dev.js",
+    "webpack:watch": "webpack --watch --config webpack.dev.js",
+    "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize",
+    "app:server": "nodemon app.js"
   }
 }
