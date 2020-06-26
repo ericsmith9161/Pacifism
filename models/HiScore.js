@@ -5,7 +5,6 @@ const HiScoreSchema = new Schema({
   user: {
     type: String,
     required: true,
-    default: "Moe Szyslak"
   },
   score: {
     type: Number,

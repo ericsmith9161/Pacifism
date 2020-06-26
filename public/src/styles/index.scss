@@ -165,6 +165,27 @@ b{
   cursor: pointer;
 }
 
+.name-input{
+  display: block;
+  position: relative;
+  left: 0px;
+  top: -200px;
+  height: 50px;
+  z-index: 101;
+  line-height: 50px;
+  font-size: 20px;
+  width: 500px;
+  color: rgb(163, 83, 238);
+  box-sizing: border-box;
+  font-variant: small-caps;
+  background-color: transparent;
+  border: 5px solid white;
+  border-radius: 10px;
+  font-weight: 700;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
 // .start-btn{
 //   display: block;
 //   position: relative;

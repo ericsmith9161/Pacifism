@@ -62,7 +62,7 @@ class GameView{
       this.gom.play();
       let scoresArray = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')) : [];
       let newScoreObj;
-      newScoreObj = [this.game.score.name, this.game.score.score];
+      newScoreObj = [this.name, this.game.score.score];
       scoresArray.push(newScoreObj);
       const topTen = scoresArray.sort((a, b) => b[1] - a[1]).slice(0, 10);
       this.drawGameOver(topTen);
@@ -78,19 +78,36 @@ class GameView{
 
     this.ctx.font = "small-caps bold 40px Courier New";
     this.ctx.fillStyle = "#00FF00";
-    this.ctx.fillText("Click to Play", 350, 300);
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("Click screen to play", 480, 300);
     this.toggleSoundSetup();
-    const cvs = document.getElementById("mycanvas")
-    const name = document.getElementsByClassName("name-input");
-    this.name = name || this.name;
+    const cvs = document.getElementById("mycanvas");
+
+    const name = document.getElementsByClassName("name-input")[0];
+    const nameForm = document.getElementsByClassName("name-form")[0];
+
+    name.classList.toggle("hidden");
+    name.addEventListener('change', (e) => {
+      e.preventDefault();
+      name.value = e.target.value;
+    })
+    nameForm.addEventListener("submit", e => {
+      e.preventDefault();
+      name.classList.toggle("hidden")
+    })
     cvs.onclick = () => {
       if (!this.started){
+        if (!name.classList.contains("hidden")){
+          name.classList.toggle("hidden");
+        }
+        this.name = name.value || this.name;
         this.start();
       }
     }
   }
 
   drawGameOver(topTen){
+    console.log(this);
     ctx.font = "small-caps bold 40px Courier New";
     ctx.fillStyle = "#00FF00";
     ctx.textAlign = "center";
@@ -107,7 +124,9 @@ class GameView{
         ctx.fillText((i+1) + "." + topTen[i][0] + ": " + topTen[i][1], 480, 120 + 30*(i+1))
       }
     }
-    Util.addScore({ user: this.name, score: this.game.score.score }).then(() => {
+    console.log(this.name);
+    Util.addScore({ user: this.name, score: this.game.score.score }).then((res) => {
+      console.log("made it here");
       setUpModals();
     })
   }

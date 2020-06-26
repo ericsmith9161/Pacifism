@@ -15,8 +15,9 @@ router.get("/scores", (req, res) => {
 
 router.post('/',
   (req, res) => {
+    console.log(req)
     const newScore = new HiScore({
-      user: req.body.name,
+      user: req.body.user,
       score: req.body.score,
     });
     newScore.save().then(score => res.json(score));
