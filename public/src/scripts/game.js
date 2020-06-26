@@ -79,30 +79,50 @@ class Game {
 
   drawOOBcircle(ctx, oobSpecifics){
     debugger
-    let x, y, r;
+    let x, y, r, color;
     switch (oobSpecifics){
       case "left":
         x = 0;
         y = this.player.pos[1];
+        if (this.player.pos[0] > -50){
+          color = "#FAED27"
+        }else{
+          color = "#FF0000"
+        }
         break
       case "right":
         x = 960;
         y = this.player.pos[1];
+        if (this.player.pos[0] < 1010) {
+          color = "#FAED27"
+        } else {
+          color = "#FF0000"
+        }
         break
       case "top":
         x = this.player.pos[0];
         y = 0;
+        if (this.player.pos[1] > -50) {
+          color = "#FAED27"
+        } else {
+          color = "#FF0000"
+        }
         break 
       case "bottom":
         x = this.player.pos[0];
         y = 640;
+        if (this.player.pos[1] < 690) {
+          color = "#FAED27"
+        } else {
+          color = "#FF0000"
+        }
         break 
     }
     r = 20;
 
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
-    ctx.fillStyle = '#FF0000';
+    ctx.fillStyle = color;
     ctx.fill();
   }
 
