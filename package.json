@@ -49,6 +49,6 @@
     "morgan": "^1.10.0"
   },
   "scripts": {
-    "app:start": "node app.js"
+    "start": "node app.js"
   }
 }
