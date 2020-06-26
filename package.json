@@ -9,7 +9,6 @@
     "maintained node versions",
     "not dead"
   ],
-  "proxy": "http://localhost:5000",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ericsmith9161/Pacifism.git"
