@@ -114,7 +114,7 @@ class GameView{
     ctx.fillText("Final Score: " + this.game.score.score, 480, 40);
     ctx.font = "small-caps 30px Courier New";
     ctx.fillStyle = "#FFFF00";
-    ctx.fillText("High Scores", 480, 100);
+    ctx.fillText("Local High Scores - Global on Top Right ", 480, 100);
 
     ctx.font = "small-caps bold 25px Courier New";
     ctx.fillStyle = "#0095DD";
