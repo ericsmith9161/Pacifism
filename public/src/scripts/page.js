@@ -32,6 +32,7 @@ export const setUpModals = () => {
   getScores().then((data) => {
     let hiScore;
     let hiScores = data.data;
+    hiScores = hiScores.slice(0,50);
 
     for (let i = 0; i < hiScores.length; i++) {
       hiScore = document.createElement('p')
