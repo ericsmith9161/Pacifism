@@ -107,7 +107,6 @@ class GameView{
   }
 
   drawGameOver(topTen){
-    console.log(this);
     ctx.font = "small-caps bold 40px Courier New";
     ctx.fillStyle = "#00FF00";
     ctx.textAlign = "center";
@@ -124,9 +123,7 @@ class GameView{
         ctx.fillText((i+1) + "." + topTen[i][0] + ": " + topTen[i][1], 480, 120 + 30*(i+1))
       }
     }
-    console.log(this.name);
     Util.addScore({ user: this.name, score: this.game.score.score }).then((res) => {
-      console.log("made it here");
       setUpModals();
     })
   }

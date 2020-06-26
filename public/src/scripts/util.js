@@ -49,7 +49,6 @@ const Util = {
   },
 
   addScore(data){
-    console.log(data);
     return axios.post(`http://localhost:5000/api/scores/`, data);
   }
 
