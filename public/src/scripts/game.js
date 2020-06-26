@@ -57,8 +57,59 @@ class Game {
     this.shards.push(shard);
   }
 
+  checkBounds(pos){
+    if (pos[0] < -100 || pos[0] > 1060 || pos[1] < -100 || pos[1] > 740){
+      this.inPlay = false;
+    }
+  }
+
+  isOutOfBounds(pos){
+    if (pos[0] < 0){
+      return "left";
+    }else if(pos[0] > 960){
+      return "right";
+    }else if(pos[1] < 0){
+      return "top";
+    }else if(pos[1] > 640){
+      return "bottom";
+    }else{
+      return null;
+    }
+  }
+
+  drawOOBcircle(ctx, oobSpecifics){
+    debugger
+    let x, y, r;
+    switch (oobSpecifics){
+      case "left":
+        x = 0;
+        y = this.player.pos[1];
+        break
+      case "right":
+        x = 960;
+        y = this.player.pos[1];
+        break
+      case "top":
+        x = this.player.pos[0];
+        y = 0;
+        break 
+      case "bottom":
+        x = this.player.pos[0];
+        y = 640;
+        break 
+    }
+    r = 20;
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, 2 * Math.PI);
+    ctx.fillStyle = '#FF0000';
+    ctx.fill();
+  }
+
   moveObjects(delta){
     this.player.move()
+    this.checkBounds(this.player.pos)
+
     if (this.frameNum % this.diamondSpawnRate === 0){
       this.addDiamond();
     }
@@ -137,6 +188,10 @@ class Game {
 
   draw(ctx){
     this.player.draw(ctx);
+    const oobSpecifics = this.isOutOfBounds(this.player.pos);
+    if(oobSpecifics){
+      this.drawOOBcircle(ctx, oobSpecifics);
+    }
     for (let i = 0; i < this.diamonds.length; i++) {
       this.diamonds[i].draw(ctx);
     }
