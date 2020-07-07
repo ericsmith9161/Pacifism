@@ -78,7 +78,6 @@ class Game {
   }
 
   drawOOBcircle(ctx, oobSpecifics){
-    debugger
     let x, y, r, color;
     switch (oobSpecifics){
       case "left":
