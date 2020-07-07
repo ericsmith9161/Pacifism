@@ -1,6 +1,6 @@
 
 
-# Pacifism #
+![Pacifism](https://i.imgur.com/mW5XCCF.png)
 
 
 ## Background ##
