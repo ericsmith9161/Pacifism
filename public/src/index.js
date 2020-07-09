@@ -8,6 +8,5 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
   const gameView = new GameView(ctx);
   gameView.drawGameBegin();
-  // gameView.start();
   window.ctx = ctx;
 });

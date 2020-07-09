@@ -22,7 +22,6 @@ class Player{
     ctx.translate(x, y);
     ctx.rotate(this.angle);
     ctx.beginPath();
-    // ctx.moveTo(x, y);
     ctx.lineTo(-10,-10)
     ctx.lineTo(-10, 5);
     ctx.lineTo(0, 15);

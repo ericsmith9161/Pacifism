@@ -27,7 +27,6 @@ class Diamond{
     const velMag = Util.norm(velDir);
     const vel = [velDir[0]/(velMag), velDir[1]/(velMag)];
     this.pos = [this.pos[0] + vel[0], this.pos[1] + vel[1]];
-    // this.pos = [this.pos[0] + (velDir[0] / (velMag * 10)), velDir[1] / (velMag * 10)]
   }
 }
 

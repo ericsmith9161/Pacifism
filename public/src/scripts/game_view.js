@@ -40,7 +40,6 @@ class GameView{
 
   animate(currentTime) {
     this.drawBackground(this.ctx);
-    // this.ctx.drawImage(this.bgi,0, 0);
 
     const delta = currentTime - this.lastTime;
     if (this.game.inPlay){
