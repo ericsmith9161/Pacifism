@@ -57,10 +57,14 @@ img{
 }
 
 .logo{
-  width: 33.33%;
+  width: 33%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.logo img{
+  width: 100%
 }
 
 .modal{
@@ -185,21 +189,6 @@ b{
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
 }
-
-// .start-btn{
-//   display: block;
-//   position: relative;
-//   top: -640px;
-//   z-index: 101;
-//   height: 640px;
-//   width: 940px;
-//   box-sizing: border-box;
-//   opacity: 0;
-// }
-
-// .start-btn:hover{
-//   cursor: pointer;
-// }
 
 .hidden{
   display: none;
