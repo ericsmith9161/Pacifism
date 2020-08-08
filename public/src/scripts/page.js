@@ -36,7 +36,14 @@ export const setUpModals = () => {
 
     for (let i = 0; i < hiScores.length; i++) {
       hiScore = document.createElement('p')
-      hiScore.textContent = `${i+1}. ${hiScores[i].user}  ${hiScores[i].score}`;
+      let player = document.createElement('span')
+      let score = document.createElement('span')
+      player.textContent = `${i+1}. ${hiScores[i].user}`;
+      score.textContent = `${hiScores[i].score}`;
+      hiScore.appendChild(player);
+      hiScore.appendChild(score);
+      hiScore.classList.add('hiscore');
+      // hiScore.textContent = `${i+1}. ${hiScores[i].user}  ${hiScores[i].score}`;
       scoreContent.appendChild(hiScore);
     }
   });
