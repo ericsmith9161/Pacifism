@@ -33,7 +33,7 @@ class GameView{
     this.diamond = new Sound("../../assets/sounds/diamondspawn.mp3");
     this.diamond.sound.volume = .05;
 
-    this.name = "Moe Szyslak";
+    this.name = "Isaac is the Best";
     
     setUpModals();
   }

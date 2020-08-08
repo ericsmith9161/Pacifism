@@ -2,7 +2,7 @@ class Score{
   constructor(){
     this.score = 0;
     this.multiplier = 1;
-    this.name = "Moe Szyslak";
+    this.name = "Isaac is the Best";
   }
 
   drawMult(ctx) {
